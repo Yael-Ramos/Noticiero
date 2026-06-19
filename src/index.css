@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  /* Aquí definimos los colores de tu portal de asesoría */
+  --color-primary: #004ac6;
+  --color-brand-dark: #0f172a;
+  --color-background: #faf8ff;
+  --color-surface: #faf8ff;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #434655;
+  --color-outline-variant: #c3c6d7;
+  --color-surface-container: #eaedff;
+  
+  /* Aquí definimos las fuentes */
+  --font-headline: "Domine", serif;
+  --font-body: "Inter", sans-serif;
+}
