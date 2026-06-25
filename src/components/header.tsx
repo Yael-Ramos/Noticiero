@@ -1,5 +1,12 @@
 import Logo from '../../../imagenes/Logo.jpg'
-export default function Header() {
+
+interface HeaderProps {
+    onLoginClick: () => void;
+}
+
+export default function Header({onLoginClick }: HeaderProps) {
+
+
     return (
         <nav className="bg-white border border-gray-100 shadow-xl sticky">
 
@@ -8,7 +15,7 @@ export default function Header() {
                 <div className="flex-shrink-0">
                     <a
                         href="#"
-                        className="text-xl font-bold text-(#0F172A) transition-colors">
+                        className="text-xl font-bold text-[#0F172A] transition-colors">
                         <img
                             src={Logo}
                             alt="MIDOMINIO"
@@ -30,7 +37,9 @@ export default function Header() {
                 </div>
 
                 <div>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors duration-200 shadow-sm" >
+                    <button 
+                    onClick={onLoginClick}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors duration-200 shadow-sm" >
                         Ingresar
                     </button>
                 </div>

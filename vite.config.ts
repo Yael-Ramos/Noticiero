@@ -9,5 +9,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] })
-  ],
+  ] as any,
+  // Asegúrate de incluir las diagonales
+  base: "/Noticiero/" 
 })

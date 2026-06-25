@@ -1,8 +1,23 @@
 import Notice from "./Noticia";
 import { noticiasDelDia } from "./Informacion";
+import { LoginForm } from "./login";
+
+interface BodyProps {
+
+    showLogin: boolean;
+}
+
+export default function Body({ showLogin }: BodyProps) {
+
+    if (showLogin) {
+        return (
+            <div className="w-full">
+                <LoginForm />
+            </div>
+        )
+    }
 
 
-export default function Body() {
     return (
         /* 1. CONTENEDOR PADRE: Cambiamos a flex-row en pantallas grandes ('lg') y alineamos arriba con items-start */
         <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-8 items-start w-full">

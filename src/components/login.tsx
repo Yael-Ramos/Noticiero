@@ -1,95 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Login() {
-  // Solo evitamos que la página parpadee al darle clic al botón, nada más.
+export const LoginForm = () => {
+  // Vamos a usar estados para guardar los valores
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const manejarEnvio = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Datos enviados:", { email, password });
   };
 
   return (
-    <main className="min-h-screen flex flex-col lg:flex-row bg-background font-body">
+    // Quitamos 'min-h-screen' para que se adapte a la tarjeta del Body
+    <main className="flex flex-col lg:flex-row w-full font-body">
       
-      {/* Panel Izquierdo (Marca y Propuesta de Valor) */}
-      <section className="hidden lg:flex lg:w-1/2 bg-brand-dark p-16 flex-col justify-between relative overflow-hidden">
+      {/* Panel Izquierdo (Ahora tematizado para tu Noticiero) */}
+      <section className="hidden lg:flex lg:w-1/2 bg-blue-900 p-16 flex-col justify-between relative overflow-hidden">
         <div className="relative z-10">
           <a className="text-white font-headline text-4xl mb-12 block font-bold" href="#">
-            Portal de Asesores
+            Noticiero React
           </a>
           <div className="max-w-md">
             <h2 className="text-white font-headline text-5xl leading-tight mb-6 font-bold">
-              Impulsa el futuro de tus alumnos hoy.
+              Mantente informado.
             </h2>
             <p className="text-blue-100/80 text-xl">
-              Accede a tu panel para gestionar prospectos, revisar el catálogo de cursos y cerrar tus próximas ventas.
+              Accede a tu cuenta para guardar tus noticias favoritas, comentar en artículos y personalizar tu feed.
             </p>
           </div>
         </div>
         
         <div className="relative z-10 mt-auto">
-          <blockquote className="border-l-4 border-primary pl-6 py-2">
+          <blockquote className="border-l-4 border-blue-400 pl-6 py-2">
             <p className="text-white italic text-lg mb-2">
-              "El mejor cierre de ventas comienza con la asesoría correcta y la herramienta adecuada."
+              "La información oportuna es la clave para entender el mundo de hoy."
             </p>
             <cite className="text-blue-200/60 text-sm not-italic uppercase tracking-widest font-medium">
-              — Dirección Comercial
+              — Equipo Editorial
             </cite>
           </blockquote>
         </div>
-        
-        <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay bg-black"></div>
       </section>
 
       {/* Panel Derecho (Formulario de Login) */}
-      <section className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-background">
+      <section className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white">
         <div className="w-full max-w-[440px]">
           
           <div className="lg:hidden flex flex-col items-center mb-12">
-            <span className="font-headline text-3xl font-bold text-on-surface mb-8">
-              Portal de Asesores
+            <span className="font-headline text-3xl font-bold text-gray-900 mb-8">
+              Noticiero React
             </span>
           </div>
           
           <div className="mb-10 text-center lg:text-left">
-            <h1 className="font-headline text-4xl font-bold text-on-surface mb-3">
+            <h1 className="font-headline text-4xl font-bold text-gray-900 mb-3">
               Bienvenido de nuevo
             </h1>
-            <p className="text-on-surface-variant">
-              Ingresa tus credenciales de asesor para continuar.
+            <p className="text-gray-500">
+              Ingresa tus credenciales para continuar.
             </p>
           </div>
 
           <form onSubmit={manejarEnvio} className="space-y-6">
             
             {/* Campo: Correo electrónico */}
-            <div className="space-y-2 group transition-transform duration-200 focus-within:scale-[1.01]">
-              <label htmlFor="email" className="block text-sm font-semibold text-on-surface">
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
                 Correo electrónico
               </label>
               <input 
                 id="email" 
                 type="email" 
-                placeholder="asesor@ejemplo.com" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="lector@ejemplo.com" 
                 required 
-                className="w-full px-4 py-3.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 outline-none text-on-surface"
+                className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all outline-none text-gray-900"
               />
             </div>
 
             {/* Campo: Contraseña */}
-            <div className="space-y-2 group transition-transform duration-200 focus-within:scale-[1.01]">
+            <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label htmlFor="password" className="block text-sm font-semibold text-on-surface">
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
                   Contraseña
                 </label>
-                <a href="#" className="text-xs font-medium text-primary hover:underline">
+                <a href="#" className="text-xs font-medium text-blue-600 hover:underline">
                   ¿Olvidaste tu contraseña?
                 </a>
               </div>
               <input 
                 id="password" 
-                type="password" 
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} 
                 placeholder="••••••••" 
                 required 
-                className="w-full px-4 py-3.5 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 outline-none text-on-surface"
+                className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all outline-none text-gray-900"
               />
             </div>
 
@@ -97,24 +104,26 @@ export default function Login() {
             <div className="pt-2">
               <button 
                 type="submit" 
-                className="w-full bg-brand-dark text-white py-4 rounded-lg font-semibold transition-all duration-300 hover:bg-slate-800 active:scale-[0.98] shadow-md"
+                className="w-full bg-blue-900 text-white py-4 rounded-lg font-semibold transition-all hover:bg-blue-800 shadow-md"
               >
                 Iniciar Sesión
               </button>
             </div>
 
+            {/* Separador */}
             <div className="relative flex py-4 items-center">
-              <div className="flex-grow border-t border-outline-variant"></div>
-              <span className="flex-shrink mx-4 text-xs text-on-surface-variant font-medium">
+              <div className="flex-grow border-t border-gray-200"></div>
+              <span className="flex-shrink mx-4 text-xs text-gray-400 font-medium">
                 o iniciar con
               </span>
-              <div className="flex-grow border-t border-outline-variant"></div>
+              <div className="flex-grow border-t border-gray-200"></div>
             </div>
 
+            {/* Botón Google */}
             <div className="flex flex-col gap-3">
               <button 
                 type="button" 
-                className="flex items-center justify-center gap-3 w-full py-3.5 border border-outline-variant rounded-lg bg-white hover:bg-surface-container transition-colors duration-200 shadow-sm font-semibold text-on-surface"
+                className="flex items-center justify-center gap-3 w-full py-3.5 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors shadow-sm font-semibold text-gray-700"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -126,12 +135,6 @@ export default function Login() {
               </button>
             </div>
           </form>
-
-          <div className="mt-20 pt-8 border-t border-outline-variant flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacidad</a>
-            <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Términos</a>
-            <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Soporte Técnico</a>
-          </div>
           
         </div>
       </section>
