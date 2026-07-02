@@ -4,18 +4,19 @@ export const LoginForm = () => {
   // Vamos a usar estados para guardar los valores
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const manejarEnvio = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
 
     const regexEspeciales = /[!@#$%^&*(),.?":{}|<>]/;
     if (password.length < 8) {
-      console.log("Error de seguridad: La contraseña debe tener al menos 8 caracteres.")
+      setError("La contraseña debe tener al menos 8 caracteres.")
       return;
     }
     if (!regexEspeciales.test(password)) {
-
-      console.log("Error de seguridad: La contraseña  debe incluir  al menos un carácter especial (ej:!@#$).");
+      setError("La contraseña  debe incluir  al menos un carácter especial (ej:!@#$).");
       return;
     }
 
@@ -27,16 +28,17 @@ export const LoginForm = () => {
 
       if (usuarioEncontrado) {
         if (usuarioEncontrado.password === password) {
-          console.log(`¡Bienvenido de nuevo, ${usuarioEncontrado.nombre}! Credenciaes Correctas.`);
+          console.log(`¡Bienvenido de nuevo, ${usuarioEncontrado.nombre}`);
         } else {
-          console.log("Error contraseña incorrecta.");
+          setError("Error contraseña incorrecta.");
         }
       } else {
-        console.log("Error: Correo no registrado en el sistema.");
+        setError("Error: Correo no registrado en el sistema.");
       }
 
     } catch (error) {
-      console.log("Hubo un problema consultando las base de datos local", error)
+      setError("Hubo un problema consultando las base de datos local")
+      console.log(error);
     }
   };
 
@@ -129,6 +131,13 @@ export const LoginForm = () => {
                   required
                   className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all outline-none text-gray-900"
                 />
+                {error && (
+                  <p className='text-sm font-medium text-red-600 animate-pulse'>
+                    {error}
+
+                  </p>
+                )}
+
               </div>
 
               {/* Botón de Submit */}
