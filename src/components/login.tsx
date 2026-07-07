@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hook/useAuth';
+import { NotificacionExito } from './loginsimulado';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { iniciarSesion, cargando, error } = useAuth();
+  const [loginExitoso, setLoginExitoso] = useState(false);
+  const navigate = useNavigate();
 
 
   const manejarEnvio = async (e: React.FormEvent) => {
@@ -13,6 +17,7 @@ export const LoginForm = () => {
     const resultado = await iniciarSesion(email, password);
     if (resultado.exito) {
       console.log("Bienvenido, " + resultado.usuario.nombre + "!")
+      setLoginExitoso(true);
     }
 
 
@@ -69,6 +74,14 @@ export const LoginForm = () => {
                 Ingresa tus credenciales para continuar.
               </p>
             </div>
+            <NotificacionExito
+            mostrar={loginExitoso}
+            alTerminar={()=> {
+              setLoginExitoso(false);
+              navigate('/App');              
+            }
+          }
+            />
 
             <form onSubmit={manejarEnvio} className="space-y-6">
 
