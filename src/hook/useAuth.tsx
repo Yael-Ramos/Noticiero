@@ -1,9 +1,26 @@
-import { useState } from "react";
 
-export const useAuth = () => {
-    // 1. Agregamos el estado del usuario. 
-    // Al iniciar, revisamos si ya había alguien guardado en la memoria del navegador.
-    const [usuario, setUsuario] = useState(() => {
+import { createContext, useContext, useState, type ReactNode } from "react";
+
+export interface Usuario {
+    usuario: number;
+    email: string;
+    nombre: string;
+    password?: string;
+}
+
+interface AuthContextType {
+    usuario: Usuario | null;
+    cargando: boolean;
+    error: string;
+    iniciarSesion: (email: string, password: string) => Promise<{ exito: boolean, usuario?: Usuario }>;
+    cerrarSesion: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+
+    const [usuario, setUsuario] = useState<Usuario | null>(() => {
         const usuarioGuardado = localStorage.getItem('usuario_noticiero');
         return usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
     });
@@ -20,14 +37,11 @@ export const useAuth = () => {
             const response = await fetch('./usuarios.json');
             const usuarios = await response.json();
 
-            const usuarioEncontrado = usuarios.find((u: any) => u.email === email);
+            const usuarioEncontrado = usuarios.find((u: Usuario) => u.email === email);
 
             if (usuarioEncontrado && usuarioEncontrado.password === password) {
-                // 2. ¡Éxito! Guardamos al usuario en el estado de React...
                 setUsuario(usuarioEncontrado);
-                // ... y también en la memoria del navegador para que sobreviva al cambio de página
                 localStorage.setItem('usuario_noticiero', JSON.stringify(usuarioEncontrado));
-                
                 return { exito: true, usuario: usuarioEncontrado };
             } else {
                 setError("Correo o contraseña incorrectos.");
@@ -39,14 +53,25 @@ export const useAuth = () => {
         } finally {
             setCargando(false);
         }
-    }; 
+    };
 
-    // 3. Creamos la función para salir
     const cerrarSesion = () => {
         setUsuario(null); // Borramos el estado de React
         localStorage.removeItem('usuario_noticiero'); // Borramos la memoria del navegador
     };
 
-    // 4. Exportamos las nuevas herramientas para que el Header las pueda usar
-    return { iniciarSesion, cargando, error, setError, usuario, cerrarSesion };
+    return (
+
+        <AuthContext.Provider value={{usuario, cargando, error, iniciarSesion, cerrarSesion}}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if(!context) {
+        throw new Error("useAuth debe usarse dentro de un AuthProvider");
+    }
+    return context;
 };

@@ -1,30 +1,12 @@
 import Notice from "./Noticia";
 import { noticiasDelDia } from "./Informacion";
-import { LoginForm } from "./login";
 
-interface BodyProps {
-
-    showLogin: boolean;
-}
-
-export default function Body({ showLogin }: BodyProps) {
-
-    if (showLogin) {
-        return (
-            <div className="w-full">
-                <LoginForm />
-            </div>
-        )
-    }
-
-
+export default function Body() {
     return (
-        /* 1. CONTENEDOR PADRE: Cambiamos a flex-row en pantallas grandes ('lg') y alineamos arriba con items-start */
+        /* 1. CONTENEDOR PADRE */
         <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-8 items-start w-full">
             
-            {/* =========================================================
-                COLUMNA IZQUIERDA: TUS NOTICIAS ACTUALES (Ocupa el 70%)
-                ========================================================= */}
+            {/* COLUMNA IZQUIERDA: TUS NOTICIAS ACTUALES */}
             <main className="w-full lg:w-2/3 flex flex-col gap-4">
                 <div className="border-b-2 border-gray-200 pb-2 mb-2">
                     <h2 className="text-2xl font-bold text-blue-900 border-b-4 border-blue-900 inline-block pb-2 -mb-[10px]">
@@ -32,7 +14,6 @@ export default function Body({ showLogin }: BodyProps) {
                     </h2>
                 </div>
 
-                {/* Tu .map se queda exactamente igual, pero protegido dentro de su columna */}
                 {noticiasDelDia.map((noticia) => (
                     <Notice
                         key={noticia.id}
@@ -43,18 +24,14 @@ export default function Body({ showLogin }: BodyProps) {
                 ))}
             </main>
 
-            {/* =========================================================
-                COLUMNA DERECHA: BARRA LATERAL STICKY (Ocupa el 30%)
-                ========================================================= */}
-            {/* El combo 'sticky top-6' hace que se congele al hacer scroll */}
+            {/* COLUMNA DERECHA: BARRA LATERAL STICKY */}
             <aside className="w-full lg:w-1/3 sticky top-6 flex flex-col gap-6">
                 
-                {/* Bloque "Trending Now" (Copia fiel de la imagen) */}
+                {/* Bloque "Trending Now" */}
                 <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-100">Trending Now</h3>
                     
                     <div className="flex flex-col gap-4">
-                        {/* Noticia Lateral 1 */}
                         <div className="cursor-pointer group">
                             <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Politics</span>
                             <h5 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug mt-0.5">
@@ -63,7 +40,6 @@ export default function Body({ showLogin }: BodyProps) {
                         </div>
                         <hr className="border-gray-100" />
 
-                        {/* Noticia Lateral 2 */}
                         <div className="cursor-pointer group">
                             <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Science</span>
                             <h5 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug mt-0.5">
@@ -72,7 +48,6 @@ export default function Body({ showLogin }: BodyProps) {
                         </div>
                         <hr className="border-gray-100" />
 
-                        {/* Noticia Lateral 3 */}
                         <div className="cursor-pointer group">
                             <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">World</span>
                             <h5 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug mt-0.5">

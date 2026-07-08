@@ -16,7 +16,7 @@ export const LoginForm = () => {
     e.preventDefault();
     const resultado = await iniciarSesion(email, password);
     if (resultado.exito) {
-      console.log("Bienvenido, " + resultado.usuario.nombre + "!")
+      console.log(resultado.usuario?.nombre)
       setLoginExitoso(true);
     }
 
@@ -78,7 +78,7 @@ export const LoginForm = () => {
             mostrar={loginExitoso}
             alTerminar={()=> {
               setLoginExitoso(false);
-              navigate('/App');              
+              navigate('/');              
             }
           }
             />
