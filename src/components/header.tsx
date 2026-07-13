@@ -56,13 +56,23 @@ export default function Header({ onLoginClick }: HeaderProps) {
                             </button>
                         </div>
                     ) : (
-                        /* Si NO existe el usuario, mostramos el botón de Ingresar original */
-                        <button 
-                            onClick={onLoginClick}
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors duration-200 shadow-sm" 
-                        >
-                            Ingresar
-                        </button>
+                        /* Si NO existe el usuario, mostramos AMBOS botones (Ingresar y Registrarse) */
+                        <div className="flex items-center space-x-3">
+                            <button 
+                                onClick={onLoginClick}
+                                className="text-sm font-semibold text-[#475569] hover:text-blue-600 px-4 py-2 transition-colors" 
+                            >
+                                Ingresar
+                            </button>
+                            
+                            {/* NUEVO: Botón de Registro que redirige a la ruta que creamos en App.tsx */}
+                            <Link 
+                                to="/registro" 
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-md transition-colors duration-200 shadow-sm text-sm"
+                            >
+                                Registrarse
+                            </Link>
+                        </div>
                     )}
                 </div>
                 

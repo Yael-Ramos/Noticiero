@@ -75,12 +75,12 @@ export const LoginForm = () => {
               </p>
             </div>
             <NotificacionExito
-            mostrar={loginExitoso}
-            alTerminar={()=> {
-              setLoginExitoso(false);
-              navigate('/');              
-            }
-          }
+              mostrar={loginExitoso}
+              alTerminar={() => {
+                setLoginExitoso(false);
+                navigate('/');
+              }
+              }
             />
 
             <form onSubmit={manejarEnvio} className="space-y-6">
@@ -154,6 +154,19 @@ export const LoginForm = () => {
                   {/* El texto del botón envuelto en un span para mejor alineación */}
                   <span>{cargando ? "Validando..." : "Iniciar Sesión"}</span>
                 </button>
+              </div>
+
+              <div className='mt-6 text-center'>
+                <p className='text-gray-600 '>
+                  ¿Aún no tiene cuenta?{''}
+                  <button
+                    type='button'
+                    onClick={() => navigate('/registro')}
+                    className='text-blue-600 pl-3 hover:underline fot-semibold cursor-pointer'
+                  >
+                    Registrate aquí
+                  </button>
+                </p>
               </div>
 
               {/* Separador */}
