@@ -158,13 +158,13 @@ export const LoginForm = () => {
 
               <div className='mt-6 text-center'>
                 <p className='text-gray-600 '>
-                  ¿Aún no tiene cuenta?{''}
+                  ¿Aún no tienes cuenta?{' '}
                   <button
                     type='button'
                     onClick={() => navigate('/registro')}
-                    className='text-blue-600 pl-3 hover:underline fot-semibold cursor-pointer'
+                    className='text-blue-600 pl-3 hover:underline font-semibold cursor-pointer'
                   >
-                    Registrate aquí
+                    Regístrate aquí
                   </button>
                 </p>
               </div>

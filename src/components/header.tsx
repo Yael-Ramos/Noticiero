@@ -18,11 +18,11 @@ export default function Header({ onLoginClick }: HeaderProps) {
                 
                 <div className="flex-shrink-0">
                     {/* 2. Enlaces con react-router-dom para evitar recargar la página */}
-                    <Link to="/App" className="text-xl font-bold text-[#0F172A] transition-colors">
+                    <Link to="/" className="text-xl font-bold text-[#0F172A] transition-colors">
                         <img
                             src={Logo}
                             alt="Noticiero React"
-                            className='h-18 w-56 rounded-lg object-contain block mix-blend-multiply'
+                            className='h-16 w-56 rounded-lg object-contain block mix-blend-multiply'
                         />
                     </Link>
                 </div>
