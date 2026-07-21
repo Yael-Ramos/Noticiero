@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { TbSettingsAutomation } from "react-icons/tb";
 export const RegisterForm = () => {
 
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ export const RegisterForm = () => {
   });
   const [errorLocal, setErrorLocal] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setItsLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -25,17 +28,22 @@ export const RegisterForm = () => {
       [e.target.id]: e.target.value
     });
   };
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
 
+  const manejarRegistro = async (e: React.FormEvent) => {
+    e.preventDefault();
     setErrorLocal('');
 
     if (formData.password !== formData.confirmPassword) {
-      setErrorLocal('Las contraseñas no coinciden. Verifícalas por favor');
-      return;
+      setErrorLocal('Las contraseñas no coinciden. Verificalas por favor');
+      return
     }
 
-    console.log("¡Todo válido! Listo para guardar a:", formData);
+    setItsLoading(true);
+
+    setTimeout(() => {
+      setItsLoading(false);
+      alert("¡Registro exitoso! Preparando salto...");
+    }, 2000)
   };
 
   return (
@@ -65,7 +73,7 @@ export const RegisterForm = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={manejarRegistro} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="firstName">Nombre(s)</label>
@@ -110,6 +118,7 @@ export const RegisterForm = () => {
                     className="w-full border border-gray-300 rounded px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition-all pr-12"
                     id="password"
                     type={showPassword ? "text" : "password"}
+                    placeholder="Contraseña"
                     value={formData.password}
                     onChange={handleChange}
                     required
@@ -138,8 +147,8 @@ export const RegisterForm = () => {
                   <input
                     className="w-full border border-gray-300 rounded px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition-all pr-12"
                     id="confirmPassword"
-
-                    type={showPassword ? "text" : "password"}
+                    placeholder="Confirmar Contraseña"
+                    type={showConfirmPassword ? "text" : "password"}
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
@@ -149,21 +158,30 @@ export const RegisterForm = () => {
                   />
                   <button
                     type="button"
-                    onClick={togglePasswordVisibility} // Nombre corregido (ver punto 2)
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)} // Nombre corregido (ver punto 2)
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors"
                     title={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                   >
-                    {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                    {showConfirmPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
                   </button>
                 </div>
               </div>
 
               <div className="pt-2">
                 <button
-                  className="w-full text-white font-semibold rounded py-3.5 flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-colors cursor-pointer"
+                  className={`w-full text-white font-semibold rounded py-3.5 flex justify-center items-center gap-2 transition-colors ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                    }`}
                   type="submit"
+                  disabled={isLoading} // Deshabilita el botón mientras carga
                 >
-                  Crear Cuenta
+                  {isLoading ? (
+                    <>
+                      <TbSettingsAutomation className="animate-spin" size={20} />
+                      Creando cuenta...
+                    </>
+                  ) : (
+                    "Crear Cuenta"
+                  )}
                 </button>
               </div>
             </form>
