@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../hook/useAuth';
 import { NotificacionExito } from './loginsimulado';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
 
@@ -59,6 +61,15 @@ export const LoginForm = () => {
         {/* Panel Derecho (Formulario de Login) */}
         <section className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white">
           <div className="w-full max-w-[440px]">
+
+            <header>
+              <Link
+                to="/"
+                className='inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medim'
+              >
+                <FaArrowLeft size={12} /> Regresar
+              </Link>
+            </header>
 
             <div className="lg:hidden flex flex-col items-center mb-12">
               <span className="font-headline text-3xl font-bold text-gray-900 mb-8">

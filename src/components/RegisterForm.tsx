@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FaEye, FaEyeSlash, FaArrowLeft } from 'react-icons/fa'
 import { TbSettingsAutomation } from "react-icons/tb";
+import { useAuth } from "../hook/useAuth";
 export const RegisterForm = () => {
+  const navigate = useNavigate();
+  const { registrarUsuario } = useAuth();
 
   const [formData, setFormData] = useState({
 
@@ -42,14 +45,35 @@ export const RegisterForm = () => {
 
     setTimeout(() => {
       setItsLoading(false);
-      alert("¡Registro exitoso! Preparando salto...");
+
+      const nuevoUsuario = {
+
+        usuario: Date.now(),
+        email: formData.email,
+        nombre: `${formData.firstName} ${formData.lastName}`,
+        password: formData.password
+      };
+
+      registrarUsuario(nuevoUsuario);
+
+      navigate('/')
     }, 2000)
   };
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col font-sans">
-      <header className="w-full py-8 px-8 text-center border-b border-gray-200">
-        <h1 className="inline-block text-3xl font-bold text-gray-900">The Chronicle</h1>
+      <header className="w-full pt-10 pb-4 px-4">
+        <div className="max-w-md mx-auto relative flex justify-center items-center">
+          <Link
+            to="/"
+            className="absolute left-0 flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+          >
+            <FaArrowLeft size={12} /> Regresar
+          </Link>
+
+          <h1 className="text-3xl font-bold text-gray-900">The Chronicle</h1>
+
+        </div>
       </header>
 
       <main className="flex-grow flex items-center justify-center p-4 md:p-8">

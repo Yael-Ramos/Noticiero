@@ -14,6 +14,7 @@ interface AuthContextType {
     error: string;
     iniciarSesion: (email: string, password: string) => Promise<{ exito: boolean, usuario?: Usuario }>;
     cerrarSesion: () => void;
+    registrarUsuario: (nuevoUsuario: Usuario) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -60,9 +61,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem('usuario_noticiero'); // Borramos la memoria del navegador
     };
 
+    const registrarUsuario = (nuevoUsuario: Usuario) => {
+        setUsuario(nuevoUsuario);
+        localStorage.setItem('usuario_noticiero', JSON.stringify(nuevoUsuario));
+    };
+
     return (
 
-        <AuthContext.Provider value={{usuario, cargando, error, iniciarSesion, cerrarSesion}}>
+        <AuthContext.Provider value={{usuario, cargando, error, iniciarSesion, cerrarSesion, registrarUsuario}}>
             {children}
         </AuthContext.Provider>
     );
