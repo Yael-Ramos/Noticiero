@@ -10,7 +10,7 @@ export default function Body() {
             <main className="w-full lg:w-2/3 flex flex-col gap-4">
                 <div className="border-b-2 border-gray-200 pb-2 mb-2">
                     <h2 className="text-2xl font-bold text-blue-900 border-b-4 border-blue-900 inline-block pb-2 -mb-[10px]">
-                        Top Stories
+                        Noticias Destacadas
                     </h2>
                 </div>
 
@@ -29,29 +29,29 @@ export default function Body() {
                 
                 {/* Bloque "Trending Now" */}
                 <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-100">Trending Now</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2 border-gray-100">Tendencias</h3>
                     
                     <div className="flex flex-col gap-4">
                         <div className="cursor-pointer group">
-                            <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Politics</span>
+                            <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Política</span>
                             <h5 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug mt-0.5">
-                                Senate Passes Controversial Infrastructure Bill After Marathon Session
+                               El Senado aprueba controvertido proyecto de ley de infraestructura tras sesión maratónica
                             </h5>
                         </div>
                         <hr className="border-gray-100" />
 
                         <div className="cursor-pointer group">
-                            <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Science</span>
+                            <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Ciencia</span>
                             <h5 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug mt-0.5">
-                                Astronomers Discover Potentially Habitable Exoplanet in Nearby System
+                               Astrónomos descubren exoplaneta potencialmente habitable en un sistema cercano
                             </h5>
                         </div>
                         <hr className="border-gray-100" />
 
                         <div className="cursor-pointer group">
-                            <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">World</span>
+                            <span className="text-[10px] font-bold text-blue-700 tracking-wider uppercase">Mundo</span>
                             <h5 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug mt-0.5">
-                                Mass Protests Erupt Across European Capitals Over Energy Policies
+                                Protestas masivas estallan en capitales europeas por nuevas políticas energéticas
                             </h5>
                         </div>
                     </div>
@@ -59,18 +59,18 @@ export default function Body() {
 
                 {/* Caja del Boletín Diario */}
                 <div className="bg-blue-600 rounded-xl p-5 text-white shadow-sm">
-                    <h4 className="text-lg font-bold mb-1">Daily Briefing</h4>
+                    <h4 className="text-lg font-bold mb-1">Boletín Diario</h4>
                     <p className="text-xs text-blue-100 mb-4 leading-relaxed">
-                        Get the day's top stories delivered directly to your inbox.
+                       Recibe las noticias más importantes del día directamente en tu correo electrónico.
                     </p>
                     <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-2">
                         <input 
                             type="email" 
-                            placeholder="Your email address" 
+                            placeholder="Tu correo electrónico" 
                             className="w-full px-3 py-2 text-sm rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                         <button className="w-full bg-blue-900 hover:bg-blue-950 text-white font-bold text-xs uppercase py-2.5 rounded-lg tracking-wider transition">
-                            Sign Up
+                            Suscribirse
                         </button>
                     </form>
                 </div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../hook/useAuth';
 import { NotificacionExito } from './loginsimulado';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
 
@@ -60,6 +62,15 @@ export const LoginForm = () => {
         <section className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white">
           <div className="w-full max-w-[440px]">
 
+            <header>
+              <Link
+                to="/"
+                className='inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medim'
+              >
+                <FaArrowLeft size={12} /> Regresar
+              </Link>
+            </header>
+
             <div className="lg:hidden flex flex-col items-center mb-12">
               <span className="font-headline text-3xl font-bold text-gray-900 mb-8">
                 Noticiero React
@@ -75,12 +86,12 @@ export const LoginForm = () => {
               </p>
             </div>
             <NotificacionExito
-            mostrar={loginExitoso}
-            alTerminar={()=> {
-              setLoginExitoso(false);
-              navigate('/');              
-            }
-          }
+              mostrar={loginExitoso}
+              alTerminar={() => {
+                setLoginExitoso(false);
+                navigate('/');
+              }
+              }
             />
 
             <form onSubmit={manejarEnvio} className="space-y-6">
@@ -154,6 +165,19 @@ export const LoginForm = () => {
                   {/* El texto del botón envuelto en un span para mejor alineación */}
                   <span>{cargando ? "Validando..." : "Iniciar Sesión"}</span>
                 </button>
+              </div>
+
+              <div className='mt-6 text-center'>
+                <p className='text-gray-600 '>
+                  ¿Aún no tienes cuenta?{' '}
+                  <button
+                    type='button'
+                    onClick={() => navigate('/registro')}
+                    className='text-blue-600 pl-3 hover:underline font-semibold cursor-pointer'
+                  >
+                    Regístrate aquí
+                  </button>
+                </p>
               </div>
 
               {/* Separador */}
