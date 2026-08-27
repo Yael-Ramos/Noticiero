@@ -27,8 +27,18 @@ export const LoginForm = () => {
 
   return (
 
-    <div className='flex flex-col justify-center items-center min-h-[calc(100vh-80px)] w-full p-4 bg-gray-50'>
-      <main className="flex flex-col lg:flex-row w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden font-body">
+    <div className='flex flex-col justify-center items-center min-h-[calc(100vh-80px)] w-full p-4 bg-gray-50 relative'>
+      <header>
+        <Link
+          to="/"
+          className='absolute top-6 left-4 md:fixed md:top-8 md:left-8 flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium z-10'
+        >
+          <FaArrowLeft/>
+      <span className="hidden md:inline">Regresar</span>
+        </Link>
+      </header>
+
+      <main className="flex flex-col lg:flex-row w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden font-body mt-12 md:mt-0">
 
         {/* Panel Izquierdo (Ahora tematizado para tu Noticiero) */}
         <section className="hidden lg:flex lg:w-1/2 bg-blue-900 p-16 flex-col justify-between relative overflow-hidden">
@@ -62,14 +72,7 @@ export const LoginForm = () => {
         <section className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white">
           <div className="w-full max-w-[440px]">
 
-            <header>
-              <Link
-                to="/"
-                className='inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medim'
-              >
-                <FaArrowLeft size={12} /> Regresar
-              </Link>
-            </header>
+
 
             <div className="lg:hidden flex flex-col items-center mb-12">
               <span className="font-headline text-3xl font-bold text-gray-900 mb-8">
