@@ -61,18 +61,21 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col font-sans">
-      <header className="w-full pt-10 pb-4 px-4">
-        <div className="max-w-md mx-auto relative flex justify-center items-center">
-          <Link
-            to="/"
-            className="absolute left-0 flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
-          >
-            <FaArrowLeft size={12} /> Regresar
-          </Link>
+    <div className="bg-gray-50 min-h-screen flex flex-col font-sans relative">
+      <Link
+        to="/"
+        className="absolute top-6 left-4 md:fixed md:top-8 md:left-8 flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900
+       transition-colors font-medium z-10"
+      >
+        <FaArrowLeft size={16} />
+        <span className="hidden md:inline">Regresar</span>
+      </Link>
 
-          <h1 className="text-3xl font-bold text-gray-900">The Chronicle</h1>
-
+      <header className="w-full pt-16 md:pt-10 pb-4 px-4">
+        <div className="max-w-md mx-auto flex justify-center items-center">
+          <h1 className="text-3xl font-bold text-gray-900">
+            The Chronicle
+          </h1>
         </div>
       </header>
 
